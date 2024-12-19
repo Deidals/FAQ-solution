@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ with Button</title>
+  <style>
+    .faq-item {
+      margin-bottom: 15px;
+    }
+
+    .faq-answer {
+      display: none; /* Hide answers by default */
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .faq-answer.visible {
+      display: block; /* Show answers when visible */
+    }
+
+    h2 {
+      cursor: pointer;
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    h2:hover {
+      color: #007BFF;
+    }
+
+    button {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-item">
+    <h2>What is your return policy?</h2>
+    <button>Toggle Answer</button>
+    <p class="faq-answer">Our return policy allows returns within 30 days of purchase.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>How can I track my order?</h2>
+    <button>Toggle Answer</button>
+    <p class="faq-answer">You can track your order using the tracking link provided in your email.</p>
+  </div>
+
+  <div class="faq-item">
+    <h2>Do you offer international shipping?</h2>
+    <button>Toggle Answer</button>
+    <p class="faq-answer">Yes, we ship to most countries worldwide. Shipping fees may apply.</p>
+  </div>
+
+  <script>
+    // JavaScript to toggle FAQ answers
+    const faqQuestions = document.querySelectorAll('h2');
+
+    faqQuestions.forEach((question) => {
+      question.addEventListener('click', toggleAnswer);
+    });
+
+    const toggleButtons = document.querySelectorAll('.faq-item button');
+
+    toggleButtons.forEach((button) => {
+      button.addEventListener('click', toggleAnswer);
+    });
+
+    function toggleAnswer(event) {
+      const faqItem = event.target.closest('.faq-item');
+      const answer = faqItem.querySelector('.faq-answer');
+
+      if (answer.classList.contains('visible')) {
+        answer.classList.remove('visible'); // Hide the answer
+      } else {
+        // Hide other visible answers (optional: accordion style)
+        document.querySelectorAll('.faq-answer.visible').forEach((visibleAnswer) => {
+          visibleAnswer.classList.remove('visible');
+        });
+
+        answer.classList.add('visible'); // Show the clicked answer
+      }
+    }
+  </script>
+</body>
+</html>
